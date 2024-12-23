@@ -49,14 +49,14 @@ export default function Project() {
   return (
     <div className="flex flex-col items-center justify-center py-10">
       {/* Heading */}
-      <h2 className="text-4xl font-bold text-gray-900 dark:text-white">Projects</h2>
+      <h2 className="text-4xl font-bold text-gray-900 dark:text-gray-400">Projects</h2>
 
       {/* Project Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 px-4 max-w-screen-lg">
         {projects.map((project) => (
           <div
             key={project.id}
-            className="dark:border-white border-2 border-black  rounded-lg shadow  dark:hover:bg-gray-700"
+            className="dark:border-gray-500 border-2 border-black  rounded-lg shadow  dark:hover:bg-gray-700"
           >
             <a href={project.link}>
               <img
@@ -67,7 +67,7 @@ export default function Project() {
             </a>
             <div className="p-5">
               <a href={project.link}>
-                <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+                <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-gray-400">
                   {project.title}
                 </h5>
               </a>
