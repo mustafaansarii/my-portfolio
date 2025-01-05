@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.css';
 import Hero from './pages/Hero';
 import About from './pages/About';
@@ -8,30 +8,42 @@ import Skills from './pages/Skills';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Resume from './components/Resume';
+import Admin from './Admin/Admin';
 
 function App() {
   return (
-    <div>
-      <Navbar/>
-      
-      <Hero />
-      <div id="about">
-        <About />
+    <Router>
+      <div>
+        <Navbar />
+        <Routes>
+          {/* Default Routes */}
+          <Route path="/" element={
+            <>
+              <Hero />
+              <div id="about">
+                <About />
+              </div>
+              <div id="Resume">
+                <Resume />
+              </div>
+              <div id="skills">
+                <Skills />
+              </div>
+              <div id="projects">
+                <Project />
+              </div>
+              <div id="contact">
+                <Contact />
+              </div>
+              <Footer />
+            </>
+          } />
+          
+          {/* Admin Route */}
+          <Route path="/admin" element={<Admin />} />
+        </Routes>
       </div>
-      <div id="Resume">
-        <Resume/>
-      </div>
-      <div id="skills">
-        <Skills />
-      </div>
-      <div id="projects">
-        <Project />
-      </div>
-      <div id="contact">
-        <Contact />
-      </div>
-      <Footer />
-    </div>
+    </Router>
   );
 }
 
