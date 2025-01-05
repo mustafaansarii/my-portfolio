@@ -17,28 +17,31 @@ function App() {
         <Navbar />
         <Routes>
           {/* Default Routes */}
-          <Route path="/" element={
-            <>
-              <Hero />
-              <div id="about">
-                <About />
-              </div>
-              <div id="Resume">
-                <Resume />
-              </div>
-              <div id="skills">
-                <Skills />
-              </div>
-              <div id="projects">
-                <Project />
-              </div>
-              <div id="contact">
-                <Contact />
-              </div>
-              <Footer />
-            </>
-          } />
-          
+          <Route
+            path="/"
+            element={
+              <>
+                <Hero />
+                <div id="about">
+                  <About />
+                </div>
+                <div id="Resume">
+                  <Resume />
+                </div>
+                <div id="skills">
+                  <Skills />
+                </div>
+                <div id="projects">
+                  <Project />
+                </div>
+                <div id="contact">
+                  <Contact />
+                </div>
+                <Footer />
+              </>
+            }
+          />
+
           {/* Admin Route */}
           <Route path="/admin" element={<Admin />} />
         </Routes>
