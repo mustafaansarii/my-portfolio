@@ -6,13 +6,20 @@ import Project from './pages/Projects';
 import Contact from './pages/Contact';
 import Skills from './pages/Skills';
 import Footer from './components/Footer';
+import Navbar from './components/Navbar';
+import Resume from './components/Resume';
 
 function App() {
   return (
     <div>
+      <Navbar/>
+      
       <Hero />
       <div id="about">
         <About />
+      </div>
+      <div id="Resume">
+        <Resume/>
       </div>
       <div id="skills">
         <Skills />
