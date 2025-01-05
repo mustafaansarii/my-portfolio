@@ -3,6 +3,8 @@ import axios from "axios";
 import { FaTrashAlt } from "react-icons/fa"; // Import trash icon for deletion
 import { AiOutlineClose } from "react-icons/ai"; // Close icon for popup
 import config from "../config.js";
+import { Link } from "react-router-dom";
+
 const Admin = () => {
   const [projects, setProjects] = useState([]);
   const [resumes, setResumes] = useState([]);
@@ -74,10 +76,12 @@ const Admin = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center py-10 dark:bg-gray-900">
-      <h1 className="text-4xl font-semibold text-center text-black dark:text-white mb-10 mt-28">Admin Pannel</h1>
+      <h1 className="text-4xl font-semibold text-center text-black dark:text-white mb-10 mt-28">
+        <Link to={"/"}>Admin Panel</Link>
+      </h1>
 
       <div className="container max-w-4xl mx-auto p-6 shadow-lg rounded-lg space-y-8 bg-white dark:bg-gray-800">
-        {/* Projects Table */}
+        {/* Projects Section */}
         <div className="section">
           <h2 className="text-2xl font-bold text-black dark:text-white">Projects</h2>
           <button
@@ -115,7 +119,7 @@ const Admin = () => {
           </table>
         </div>
 
-        {/* Resumes Table */}
+        {/* Resumes Section */}
         <div className="section">
           <h2 className="text-2xl font-bold text-black dark:text-white">Resumes</h2>
           <button
@@ -160,7 +164,7 @@ const Admin = () => {
           </table>
         </div>
 
-        {/* Socials Table */}
+        {/* Socials Section */}
         <div className="section">
           <h2 className="text-2xl font-bold text-black dark:text-white">Socials</h2>
           <button
@@ -208,6 +212,7 @@ const Admin = () => {
         </div>
       </div>
 
+      {/* Form Popup */}
       {formVisible && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-10">
           <div className="bg-white p-8 rounded-lg shadow-lg max-w-lg w-full dark:bg-gray-700">
@@ -217,83 +222,83 @@ const Admin = () => {
             >
               <AiOutlineClose />
             </button>
-            <h3 className="text-xl font-semibold text-gray-700 dark:text-white mb-4">Add New {section}</h3>
-            <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
-              {/* Dynamically render form fields based on the section */}
+            <h2 className="text-2xl font-bold mb-4 dark:text-white">{`Add ${section}`}</h2>
+            <form>
+              {/* Conditional form fields based on the section */}
               {section === "projects" && (
                 <>
                   <input
                     type="text"
-                    placeholder="Title"
-                    value={newData.title || ""}
-                    onChange={(e) =>
-                      setNewData({ ...newData, title: e.target.value })
-                    }
-                    className="w-full p-3 border border-gray-300 rounded-md dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-                  />
-                  <textarea
-                    placeholder="Description"
-                    value={newData.description || ""}
-                    onChange={(e) =>
-                      setNewData({ ...newData, description: e.target.value })
-                    }
-                    className="w-full p-3 border border-gray-300 rounded-md dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+                    placeholder="Enter Image Source"
+                    value={newData.imgSrc || ""}
+                    onChange={(e) => setNewData({ ...newData, imgSrc: e.target.value })}
+                    className="w-full p-2 mb-4 border rounded dark:bg-gray-800 dark:text-white"
                   />
                   <input
                     type="text"
-                    placeholder="URL"
-                    value={newData.url || ""}
-                    onChange={(e) =>
-                      setNewData({ ...newData, url: e.target.value })
-                    }
-                    className="w-full p-3 border border-gray-300 rounded-md dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+                    placeholder="Enter Title"
+                    value={newData.title || ""}
+                    onChange={(e) => setNewData({ ...newData, title: e.target.value })}
+                    className="w-full p-2 mb-4 border rounded dark:bg-gray-800 dark:text-white"
+                  />
+                  <textarea
+                    placeholder="Enter Description"
+                    value={newData.description || ""}
+                    onChange={(e) => setNewData({ ...newData, description: e.target.value })}
+                    className="w-full p-2 mb-4 border rounded dark:bg-gray-800 dark:text-white"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Enter Live Link"
+                    value={newData.liveLink || ""}
+                    onChange={(e) => setNewData({ ...newData, liveLink: e.target.value })}
+                    className="w-full p-2 mb-4 border rounded dark:bg-gray-800 dark:text-white"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Enter GitHub Link"
+                    value={newData.GitHubLink || ""}
+                    onChange={(e) => setNewData({ ...newData, GitHubLink: e.target.value })}
+                    className="w-full p-2 mb-4 border rounded dark:bg-gray-800 dark:text-white"
                   />
                 </>
               )}
               {section === "resumes" && (
-                <>
-                  <input
-                    type="text"
-                    placeholder="Resume Link"
-                    value={newData.resumeLink || ""}
-                    onChange={(e) =>
-                      setNewData({ ...newData, resumeLink: e.target.value })
-                    }
-                    className="w-full p-3 border border-gray-300 rounded-md dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-                  />
-                </>
+                <input
+                  type="text"
+                  placeholder="Enter Resume Link"
+                  value={newData.resumeLink || ""}
+                  onChange={(e) => setNewData({ ...newData, resumeLink: e.target.value })}
+                  className="w-full p-2 mb-4 border rounded dark:bg-gray-800 dark:text-white"
+                />
               )}
               {section === "socials" && (
                 <>
                   <input
                     type="text"
-                    placeholder="Social Link"
-                    value={newData.link || ""}
-                    onChange={(e) =>
-                      setNewData({ ...newData, link: e.target.value })
-                    }
-                    className="w-full p-3 border border-gray-300 rounded-md dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+                    placeholder="Enter Image Source"
+                    value={newData.imgSrc || ""}
+                    onChange={(e) => setNewData({ ...newData, imgSrc: e.target.value })}
+                    className="w-full p-2 mb-4 border rounded dark:bg-gray-800 dark:text-white"
                   />
                   <input
                     type="text"
-                    placeholder="Image Source"
-                    value={newData.imgSrc || ""}
-                    onChange={(e) =>
-                      setNewData({ ...newData, imgSrc: e.target.value })
-                    }
-                    className="w-full p-3 border border-gray-300 rounded-md dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+                    placeholder="Enter Link"
+                    value={newData.link || ""}
+                    onChange={(e) => setNewData({ ...newData, link: e.target.value })}
+                    className="w-full p-2 mb-4 border rounded dark:bg-gray-800 dark:text-white"
                   />
                 </>
               )}
-
-              {error && <p className="text-red-600">{error}</p>}
               <button
+                type="button"
                 onClick={handleFormSubmit}
-                className="w-full p-3 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
               >
                 Submit
               </button>
             </form>
+            {error && <div className="mt-4 text-red-600">{error}</div>}
           </div>
         </div>
       )}

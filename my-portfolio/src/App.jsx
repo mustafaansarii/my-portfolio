@@ -14,13 +14,16 @@ function App() {
   return (
     <Router>
       <div>
-        <Navbar />
+        {/* Navbar is outside of Routes to ensure it's displayed on all pages */}
+        
+
         <Routes>
           {/* Default Routes */}
           <Route
             path="/"
             element={
               <>
+              <Navbar />
                 <Hero />
                 <div id="about">
                   <About />
