@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import config from '../config';
 export default function Project() {
   const [projects, setProjects] = useState([]);
 
@@ -7,7 +7,7 @@ export default function Project() {
     // Fetch project data from the backend
     const fetchProjects = async () => {
       try {
-        const response = await fetch('http://localhost:8080/projects');
+        const response = await fetch(`${config.Backend_Api}/projects`);
         if (!response.ok) {
           throw new Error('Failed to fetch projects');
         }

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-scroll"; // Import Link from react-scroll
-
+import config from '../config';
 export default function Hero() {
   const [socialIcons, setSocialIcons] = useState([]);
   const [resumeLink, setResumeLink] = useState("");
 
   useEffect(() => {
     // Fetching social icons
-    fetch("http://localhost:8080/socials") // Replace with your actual backend API
+    fetch(`${config.Backend_Api}/socials`) // Replace with your actual backend API
       .then((response) => response.json())
       .then((data) => {
         setSocialIcons(data); // Store the social icons data in the state
@@ -17,7 +17,7 @@ export default function Hero() {
       });
 
     // Fetching resume link
-    fetch("http://localhost:8080/resumes") // Replace with your actual backend API
+    fetch(`${config.Backend_Api}/resumes`) // Replace with your actual backend API
       .then((response) => response.json())
       .then((data) => {
         if (data && data.length > 0) {

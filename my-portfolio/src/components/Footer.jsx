@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
+import config from '../config';
 const Footer = () => {
   const [socialIcons, setSocialIcons] = useState([]);
 
   // Fetch social icons data when the component mounts
   useEffect(() => {
-    fetch("http://localhost:8080/socials")
+    fetch(`${config.Backend_Api}/socials` )
       .then((response) => response.json())
       .then((data) => {
         setSocialIcons(data); // Store the data in the state

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import config from '../config';
 const Contact = () => {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -19,7 +19,7 @@ const Contact = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:8080/api/contact', {
+      const response = await fetch(`${config.Backend_Api}/api/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ const Contact = () => {
               value={formData.firstName}
               onChange={handleChange}
               required
-              className="p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="p-3 border-2 dark:bg-slate-400 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <div className="flex flex-col">
@@ -70,7 +70,7 @@ const Contact = () => {
               value={formData.lastName}
               onChange={handleChange}
               required
-              className="p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="p-3 border-2 dark:bg-slate-400 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
         </div>
@@ -83,7 +83,7 @@ const Contact = () => {
             value={formData.company}
             onChange={handleChange}
             required
-            className="p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="p-3 border-2 border-gray-300 dark:bg-slate-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
         
@@ -95,7 +95,7 @@ const Contact = () => {
             value={formData.email}
             onChange={handleChange}
             required
-            className="p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="p-3 border-2 border-gray-300 dark:bg-slate-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
@@ -107,7 +107,7 @@ const Contact = () => {
             value={formData.phoneNumber}
             onChange={handleChange}
             required
-            className="p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="p-3 border-2 border-gray-300 dark:bg-slate-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
@@ -118,7 +118,7 @@ const Contact = () => {
             value={formData.message}
             onChange={handleChange}
             required
-            className="p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 h-32"
+            className="p-3 border-2 border-gray-300 dark:bg-slate-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 h-32"
           />
         </div>
 
