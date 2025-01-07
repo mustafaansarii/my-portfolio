@@ -7,7 +7,7 @@ export default function Hero() {
 
   useEffect(() => {
     // Fetching social icons
-    fetch(`${config.Backend_Api}/socials`) // Replace with your actual backend API
+    fetch(`${config.Backend_Api}socials`) // Replace with your actual backend API
       .then((response) => response.json())
       .then((data) => {
         setSocialIcons(data); // Store the social icons data in the state
@@ -17,7 +17,7 @@ export default function Hero() {
       });
 
     // Fetching resume link
-    fetch(`${config.Backend_Api}/resumes`) // Replace with your actual backend API
+    fetch(`${config.Backend_Api}resumes`) // Replace with your actual backend API
       .then((response) => response.json())
       .then((data) => {
         if (data && data.length > 0) {

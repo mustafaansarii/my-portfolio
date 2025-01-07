@@ -19,7 +19,7 @@ const Contact = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`${config.Backend_Api}/api/contact`, {
+      const response = await fetch(`${config.Backend_Api}api/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ const Contact = () => {
 
   return (
     <div className="container mx-auto p-6  rounded-lg shadow-lg max-w-2xl mt-10 border mb-10">
-      <h2 className="text-3xl font-semibold text-center text-gray-800 dark:text-gray-50  mb-6">Contact Us</h2>
+      <h2 className="text-3xl font-semibold text-center text-gray-800 dark:text-gray-50  mb-6">Contact Me</h2>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="flex flex-col">
