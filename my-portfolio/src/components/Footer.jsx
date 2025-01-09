@@ -64,7 +64,7 @@ const Footer = () => {
           <p>
         <span
           onClick={handleNavigation}
-          className="cursor-pointer text-gray-100 hover:underline"
+          className="cursor-pointer text-gray-500 hover:underline"
         >
           © {new Date().getFullYear()}{" "} Mustafa. Built with ❤️ using React.
         </span>
