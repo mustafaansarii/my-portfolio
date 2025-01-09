@@ -60,13 +60,13 @@ const Footer = () => {
         </div>
 
         <div className="text-xs dark:text-white font-semibold py-3 text-center">
-          © {new Date().getFullYear()}{" "}
+          
           <p>
         <span
           onClick={handleNavigation}
-          className="cursor-pointer text-indigo-400 hover:underline"
+          className="cursor-pointer text-gray-100 hover:underline"
         >
-          Mustafa. Built with ❤️ using React.
+          © {new Date().getFullYear()}{" "} Mustafa. Built with ❤️ using React.
         </span>
       </p>
         </div>
