@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import React, { useState } from "react"; 
 import './App.css';
 import Hero from './pages/Hero';
 import About from './pages/About';
@@ -9,21 +10,21 @@ import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Resume from './components/Resume';
 import Admin from './Admin/Admin';
+import Auth from './Admin/Auth';
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // State to manage authentication
+
   return (
     <Router>
       <div>
-        {/* Navbar is outside of Routes to ensure it's displayed on all pages */}
-        
-
         <Routes>
           {/* Default Routes */}
           <Route
             path="/"
             element={
               <>
-              <Navbar />
+                <Navbar />
                 <Hero />
                 <div id="about">
                   <About />
@@ -46,7 +47,18 @@ function App() {
           />
 
           {/* Admin Route */}
-          <Route path="/admin" element={<Admin />} />
+          <Route
+            path="/admin"
+            element={
+              isAuthenticated ? <Admin /> : <Navigate to="/auth" replace />
+            }
+          />
+
+          {/* Auth Route */}
+          <Route
+            path="/auth"
+            element={<Auth setIsAuthenticated={setIsAuthenticated} />}
+          />
         </Routes>
       </div>
     </Router>

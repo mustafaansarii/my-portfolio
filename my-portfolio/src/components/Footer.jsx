@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import config from '../config';
+import { useNavigate } from "react-router-dom";
 const Footer = () => {
   const [socialIcons, setSocialIcons] = useState([]);
+  const navigate = useNavigate();
+
+  const handleNavigation = () => {
+    navigate("/auth");
+  };
 
   // Fetch social icons data when the component mounts
   useEffect(() => {
@@ -55,7 +61,14 @@ const Footer = () => {
 
         <div className="text-xs dark:text-white font-semibold py-3 text-center">
           © {new Date().getFullYear()}{" "}
-          <Link to="/admin">Mustafa. Built with ❤️ using React.</Link>
+          <p>
+        <span
+          onClick={handleNavigation}
+          className="cursor-pointer text-indigo-400 hover:underline"
+        >
+          Mustafa. Built with ❤️ using React.
+        </span>
+      </p>
         </div>
       </div>
     </footer>
