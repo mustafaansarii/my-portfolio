@@ -1,41 +1,32 @@
-import React, { useState, useEffect } from "react";
+// Footer.jsx
+import React from "react";
 import { Link } from "react-router-dom";
-import config from '../config';
 import { useNavigate } from "react-router-dom";
+import { useSocialIcons } from "../Auth/SocialAuth"; 
 const Footer = () => {
-  const [socialIcons, setSocialIcons] = useState([]);
   const navigate = useNavigate();
-
+  const { data: socialIcons = [], isFetching, isLoading, error } = useSocialIcons(); 
   const handleNavigation = () => {
     navigate("/auth");
   };
 
-  // Fetch social icons data when the component mounts
-  useEffect(() => {
-    fetch(`${config.Backend_Api}socials` )
-      .then((response) => response.json())
-      .then((data) => {
-        setSocialIcons(data); // Store the data in the state
-      })
-      .catch((error) => {
-        console.error("Error fetching social icons:", error);
-      });
-  }, []);
-
   return (
     <footer className="relative">
       {/* Bold Line Above Footer */}
-
-      {/* Footer Content */}
       <div className="flex flex-col items-center">
-        {/* Thin Line Above Icons */}
         <div className="w-full h-[1px] bg-gray-700 dark:bg-white mb-4"></div>
 
         <div className="mt-2 flex justify-center flex-wrap gap-3">
           {/* Social Icons */}
-          {socialIcons.length > 0 ? (
+          {isLoading ? (
+            <p>Loading social icons...</p>
+          ) : error ? (
+            <p>Error loading icons.</p>
+          ) : (
             socialIcons.map((icon, index) => {
-              const isEmail = icon.link.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/);
+              const isEmail = icon.link.match(
+                /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+              );
               const href = isEmail ? `mailto:${icon.link}` : icon.link;
 
               return (
@@ -54,23 +45,21 @@ const Footer = () => {
                 </a>
               );
             })
-          ) : (
-            <p>Loading social icons...</p>
           )}
         </div>
 
         <div className="text-xs dark:text-white font-semibold py-3 text-center">
-          
           <p>
-        <span
-          onClick={handleNavigation}
-          className="cursor-pointer text-gray-500 hover:underline"
-        >
-          © {new Date().getFullYear()}{" "} Mustafa. Built with ❤️ using React.
-        </span>
-      </p>
+            <span
+              onClick={handleNavigation}
+              className="cursor-pointer text-gray-500 hover:underline"
+            >
+              © {new Date().getFullYear()} Mustafa. Built with ❤️ using React.
+            </span>
+          </p>
         </div>
       </div>
+      {isFetching && <p>Fetching new data in the background...</p>}
     </footer>
   );
 };

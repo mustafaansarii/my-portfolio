@@ -1,25 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import config from '../config';
+
+import { useProjects } from '../Auth/ProjectAuth';  
+
 export default function Project() {
-  const [projects, setProjects] = useState([]);
+  const { data: projects = [], isFetching, isLoading, error } = useProjects();
 
-  useEffect(() => {
-    // Fetch project data from the backend
-    const fetchProjects = async () => {
-      try {
-        const response = await fetch(`${config.Backend_Api}projects`);
-        if (!response.ok) {
-          throw new Error('Failed to fetch projects');
-        }
-        const data = await response.json();
-        setProjects(data);
-      } catch (error) {
-        console.error('Error fetching projects:', error);
-      }
-    };
+  if (isLoading) {
+    return <p>Loading projects...</p>; 
+  }
 
-    fetchProjects();
-  }, []);
+  if (error) {
+    return <p>Error loading projects.</p>;
+  }
 
   return (
     <div className="flex flex-col items-center justify-center py-10">

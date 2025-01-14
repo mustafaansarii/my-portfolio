@@ -1,33 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-scroll"; // Import Link from react-scroll
-import config from '../config';
+import { useSocialIcons } from "../Auth/SocialAuth"; 
+import { useResumeLink } from "../Auth/ResumeAuth";
+
 export default function Hero() {
-  const [socialIcons, setSocialIcons] = useState([]);
-  const [resumeLink, setResumeLink] = useState("");
+  const { data: resumeData = [], isFetching: isFetchingResume, isLoading: isLoadingResume, error: resumeError } = useResumeLink();
+  const { data: socialIcons = [], isFetching: isFetchingSocials, isLoading: isLoadingSocials, error: socialError } = useSocialIcons();
 
-  useEffect(() => {
-    // Fetching social icons
-    fetch(`${config.Backend_Api}socials`) // Replace with your actual backend API
-      .then((response) => response.json())
-      .then((data) => {
-        setSocialIcons(data); // Store the social icons data in the state
-      })
-      .catch((error) => {
-        console.error("Error fetching social icons:", error);
-      });
 
-    // Fetching resume link
-    fetch(`${config.Backend_Api}resumes`) // Replace with your actual backend API
-      .then((response) => response.json())
-      .then((data) => {
-        if (data && data.length > 0) {
-          setResumeLink(data[0].resumeLink); // Store the resume link in the state
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching resume link:", error);
-      });
-  }, []);
+  const resumeLink = resumeData.length > 0 ? resumeData[0]?.resumeLink : null;
+
 
   return (
     <div className="dark:text-black flex flex-col items-center mx-auto min-h-screen max-w-[900px]">
